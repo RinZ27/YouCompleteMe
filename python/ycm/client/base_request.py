@@ -254,7 +254,7 @@ def BuildRequestDataForLocation( file : str, line : int, column : int ):
       file,
       create_buffer_if_needed = True )
   try:
-    vim.eval( f'bufload( "{ file }" )' )
+    vim.eval( f"bufload( '{ vimsupport.EscapeForVim( file ) }' )" )
   except vim.error as e:
     if 'E325' not in str( e ):
       raise

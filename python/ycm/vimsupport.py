@@ -1229,7 +1229,7 @@ def OpenFileInPreviewWindow( filename, modifiers ):
   """ Open the supplied filename in the preview window """
   if modifiers:
     modifiers = ' ' + modifiers
-  vim.command( f'silent!{ modifiers } pedit! { filename }' )
+  vim.command( f'silent!{ modifiers } pedit! { EscapeFilepathForVimCommand( filename ) }' )
 
 
 def WriteToPreviewWindow( message, modifiers ):
@@ -1327,7 +1327,7 @@ def OpenFilename( filename, options = {} ):
     vim.command( f'{ options.get( "mods", "" ) }'
                  f'{ size }'
                  f'{ command } '
-                 f'{ filename }' )
+                 f'{ EscapeFilepathForVimCommand( filename ) }' )
   # When the file we are trying to jump to has a swap file,
   # Vim opens swap-exists-choices dialog and throws vim.error with E325 error,
   # or KeyboardInterrupt after user selects one of the options which actually
